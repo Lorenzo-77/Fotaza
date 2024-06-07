@@ -1,0 +1,76 @@
+<div class="container p-4">
+
+<section class="h-100 gradient-custom-2">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col col-lg-9 col-xl-7">
+        <div class="card">
+          <div class="rounded-top text-white d-flex flex-row" style="background-color: #000; height:200px;">
+            <div class="ms-4 mt-5 d-flex flex-column" style="width: 150px;">
+              <img src="https://cdn-icons-png.flaticon.com/512/6596/6596121.png"
+                alt="Generic placeholder image" class="img-fluid img-thumbnail mt-4 mb-2"
+                style="width: 150px; z-index: 1">
+            </div>
+            {{#each use}}
+            <div class="ms-3" style="margin-top: 130px;">
+              <h5>{{name}} {{lastname}}</h5>
+              <p>Argentina</p>
+            </div>
+          </div>
+          <div class="p-4 text-black" style="background-color: #f8f9fa;">
+            <div class="d-flex justify-content-end text-center py-1">
+
+          </div>
+          <div class="card-body p-4 text-black">
+            <div class="mb-5">
+              <p class="lead fw-normal mb-1">Sobre mi</p>
+              <div class="p-4" style="background-color: #9fcfff;">
+                <p class="font-italic mb-1">Email: {{email}}</p>
+                <p class="font-italic mb-0">Creado en: {{moment user.system_created format="DD/MM/YYYY"}}</p>
+              </div>
+            </div>
+            {{/each}}
+            <div class="d-flex justify-content-between align-items-center mb-4">
+              <p class="lead fw-normal mb-0">Mis imagenes</p>
+            </div>
+            
+            <div class="container">
+<div class="row">
+  {{#each image}}
+    <div class="col-md-4 mb-4">
+      <div class="card">
+        <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem; z-index: 1;">
+          <form action="/delete/{{img_id}}" method="POST" class="d-inline">
+            <button type="submit" class="btn btn-outline-danger btn-sm" onclick="return confirm('¿Estás seguro de que deseas eliminar esta imagen?');">
+              <i class="bi bi-trash fs-7"></i>
+            </button>
+          </form>
+          <a class="btn btn-outline-success btn-sm ms-2" href="/update/{{img_id}}">
+            <i class="bi bi-pencil-square fs-7"></i>
+          </a>
+        </div>
+
+        <img class="card-img-top" src="/uploads/{{image_url}}" alt="{{title}}">
+        <div class="card-body p-4">
+          <div class="text-center">
+            <!-- Product name-->
+            <h5 class="fw-bolder">{{title}}</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+  {{/each}}
+</div>
+
+
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</div>

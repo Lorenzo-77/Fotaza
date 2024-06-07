@@ -1,0 +1,72 @@
+<main class="container p-5">
+    <div class="col-md-4 mx-auto">
+        <div class="card text-center border-primary mb-3">
+            <div class="card-header">
+                <h3>¿Qué deseas modificar?</h3>
+            </div>
+            <div class="card-body">
+                {{#each img}}
+                <form action="/update/{{img_id}}" method="post">
+                    <input type="hidden" name="img_id" value="{{img_id}}">
+
+                    <div class="input-group mb-3">
+                        <input type="text" name="title" class="form-control" value="{{title}}" autofocus required>
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="Estado" disabled>
+                        <select name="state" class="form-select" aria-label="Default select example">
+                            <option value="{{state}}">{{state}}</option>
+                            <option value="Publica">Pública</option>
+                            <option value="Protegida">Protegida</option>
+                            <option value="Privada">Privada</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="Categoría" disabled>
+                        <select name="category" class="form-select" aria-label="Default select example">
+                            <option value="{{category}}">{{category}}</option>
+                            <option value="Naturaleza">Naturaleza</option>
+                            <option value="Arte y Cultura">Arte y Cultura</option>
+                            <option value="Viajes y Aventuras">Viajes y Aventuras</option>
+                            <option value="Comida y Bebida">Comida y Bebida</option>
+                            <option value="Gente y Retratos">Gente y Retratos</option>
+                            <option value="Tecnología y Ciencia">Tecnología y Ciencia</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="Derechos" disabled>
+                        <select name="rights" class="form-select" aria-label="Default select example">
+                            <option value="{{rights}}">{{rights}}</option>
+                            <option value="Copyleft">Copyleft</option>
+                            <option value="Copyright">Copyright</option>
+                            <option value="Commons">Commons</option>
+                            <option value="Fair Use">Fair Use</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <input type="text" name="label1" class="form-control" value="{{label1}}">
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <input type="text" name="label2" class="form-control" value="{{label2}}">
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <input type="text" name="label3" class="form-control" value="{{label3}}">
+                    </div>
+
+                    <div class="form-group">
+                        <button class="btn btn-primary btn-block" type="submit">
+                            Guardar
+                        </button>
+                    </div>
+                </form>
+                {{/each}}
+            </div>
+        </div>
+    </div>
+</main>

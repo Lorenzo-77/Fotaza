@@ -1,0 +1,95 @@
+<main class="container p-5">
+
+    <div class="col-md-4 mx-auto ">
+        <div class="card text-center border-primary mb-3">
+            <div class="card-header">
+                <h3>¿Que imagen deseas Publicar?</h3>
+            </div>
+            <div class="card-body ">
+                <form action="" method="post" enctype="multipart/form-data">
+                    <div class="input-group mb-3">
+                        <input type="text" name="title" class="form-control" placeholder="Titulo" autofocus required>
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <input class="form-control" type="file" name="image" />
+
+                    </div>
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="Estado" disabled>
+                        <select name="state" class="form-select" aria-label="Default select example">
+                            <option>Publica</option>
+                            <option>Protegida</option>
+                            <option>Privada</option>
+                        </select>
+                    </div>
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="Categoria" disabled>
+                        <select name="category" class="form-select" aria-label="Default select example">
+                            <option>Naturaleza</option>
+                            <option>Arte y Cultura</option>
+                            <option>Viajes y Aventuras</option>
+                            <option>Comida y Bebida</option>
+                            <option>Gente y Retratos</option>
+                            <option>Tecnología y Ciencia</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="Derechos" disabled>
+                        <select name="rights" class="form-select" aria-label="Default select example">
+                            <option>Copyleft</option>
+                            <option>Copyright</option> <!-- debe ser privada  -->
+                            <option>Commons</option>
+                            <option>Fair Use</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group mb-3 watermark-section" style="display: none;">
+                        <input type="text" class="form-control" placeholder="Marca de Agua" disabled>
+                        <input class="form-control" type="file" name="watermark_config" />
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <input type="text" name="label1" class="form-control" placeholder="Etiqueta">
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <input type="text" name="label2" class="form-control" placeholder="Etiqueta">
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <input type="text" name="label3" class="form-control" placeholder="Etiqueta">
+                    </div>
+
+
+                    <div class="form-group">
+                        <button class="btn btn-primary btn-block" type="submit">
+                            Guardar
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+
+<script>
+    $(document).ready(function () {
+
+        $('select[name="rights"]').on('change', function () {
+            var selectedRights = $(this).val();
+            var stateField = $('select[name="state"]');
+            var watermarkSection = $('.watermark-section');
+
+            if (selectedRights === 'Copyright') {
+                stateField.val('Privada').prop('disabled', true);
+                watermarkSection.show(); // Muestra la sección de la marca de agua
+            } else {
+                stateField.val('Publica').prop('disabled', false);
+                watermarkSection.hide(); // Oculta la sección de la marca de agua
+            }
+            stateField.attr('value', 'Privada');
+        });
+    });
+</script>

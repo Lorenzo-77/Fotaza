@@ -1,0 +1,89 @@
+<!-- Header-->
+<header class="ojo py-5">
+  <div class="container px-4 px-lg-5 my-5">
+    <div class="text-center text-white">
+      <h1 class="display-4 fw-bolder">Captura, Edita y Comparte</h1>
+      <p class="lead fw-normal text-white-50 mb-0">Tu mundo en una imagen</p>
+    </div>
+  </div>
+</header>
+
+<section class="py-5">
+  <div class="container px-4 px-lg-5 mt-5">
+    <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+      {{#if user}}
+      {{#each image1}}
+
+      <div class="col mb-5">
+        <div class="card h-100">
+          <!-- Sale badge-->
+          <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">{{state}}
+          </div>
+          <!-- Product image-->
+          {{#eq rights 'Copyright'}}
+          <img class="card-img-top" src="/uploads/{{watermark_type}}" alt="..." />
+          {{else}}
+          <img class="card-img-top" src="/uploads/{{image_url}}" alt="..." />
+          {{/eq}}
+          <!-- Product details-->
+          <div class="card-body p-4">
+            <div class="text-center">
+              <!-- Product name-->
+              <h5 class="fw xx">{{title}}</h5>
+
+              {{category}}
+            </div>
+          </div>
+  <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+    <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="/producto/{{img_id}}">Ver Imagen</a>
+    </div>
+  </div>
+
+        </div>
+      </div>
+
+      {{/each}}
+      {{else}}
+      {{#each image}}
+
+      <div class="col mb-5">
+        <div class="card h-100">
+          <!-- Sale badge-->
+          <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">{{state}}
+          </div>
+          <!-- Product image-->
+          <img class="card-img-top" src="/uploads/{{watermark_type}}" alt="..." />
+          <!-- Product details-->
+          <div class="card-body p-4">
+            <div class="text-center">
+              <!-- Product name-->
+              <h5 class="fw xx">{{title}}</h5>
+
+              {{category}}
+            </div>
+          </div>
+         
+          <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+            <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="/producto/{{img_id}}">Ver Imagen</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      {{else}}
+      <div class="col-md-4 mx-auto">
+        <div class="card text-center">
+          <div class="card-body">
+
+            <p class="lead">Sin imagenes</p>
+            <img class="card-img-top" src="https://cdn.pixabay.com/photo/2021/02/19/14/42/sad-emoji-6030450_960_720.png"
+              alt="..." />
+          </div>
+        </div>
+      </div>
+      {{/each}}
+      {{/if}}
+    </div>
+  </div>
+</section>

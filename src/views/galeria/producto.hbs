@@ -1,0 +1,242 @@
+<!--Main layout-->
+<section class="py-5">
+  <div class="container mt-5">
+    <!--Grid row-->
+    {{#if user}}
+    {{#each image}}
+    <div class="row">
+
+      <div class="col-md-6 mb-4">
+          {{#eq rights 'Copyright'}}
+          <img src="/uploads/{{watermark_type}}" class="d-block w-100 redimension" alt="" />
+          {{else}}
+          <img src="/uploads/{{image_url}}" class="d-block w-100 redimension" alt="" />
+          {{/eq}}
+        
+        Fecha de Publicacion: {{moment creation_date format="DD/MM/YYYY"}}
+      </div>
+
+      <div class="col-md-6 mb-4">
+        <!--Content-->
+        <div class="p-4">
+          <div class="mb-3">
+            <a href="/{{category}}">
+              <span class="badge bg-dark me-1">{{category}}</span>
+            </a>
+            <a href="/{{label1}}">
+              <span class="badge bg-info me-1">{{label1}}</span>
+            </a>
+            <a href="/{{label2}}">
+              <span class="badge bg-danger me-1">{{label2}}</span>
+            </a>
+            <a href="/{{label3}}">
+              <span class="badge bg-success me-1">{{label3}}</span>
+            </a>
+          </div>
+          <div class="small mb-1"><strong>Titulo</strong></div>
+
+          <strong>
+            <p style="font-size: 20px;">{{title}}</p>
+          </strong>
+          <div class="small mb-1"><strong>Autor: <a href="/perfil/{{user_id}}"> {{user_name}} {{user_lastname}} </a> <i class="bi bi-person-plus-fill"></i></strong></div>
+
+          <p>Si te gusta mi contenido puedes comunicarte conmigo desde mi <a href="mailto:{{user_email}}">Correo!</a> <i class="bi bi-envelope"></i>
+          </p>
+
+          {{#with ../averageRating}}
+          <div class="rating">
+            <p>Valoración de la imagen: {{this}} <i class="bi bi-star-fill"></i></p>
+          </div>
+          {{/with}}
+
+          <form action="/agregarValoracion/{{img_id}}" method="post" class="d-flex justify-content-left">
+            <div class="text-center mb-3">
+              <p>Valorar:</p>
+              <button type="submit" name="rating" value="1" class="btn btn-outline-warning mx-1">
+                <i class="bi bi-star">1</i>
+              </button>
+
+              <button type="submit" name="rating" value="2" class="btn btn-outline-warning mx-1">
+                <i class="bi bi-star">2</i>
+              </button>
+
+              <button type="submit" name="rating" value="3" class="btn btn-outline-warning mx-1">
+                <i class="bi bi-star">3</i>
+              </button>
+
+              <button type="submit" name="rating" value="4" class="btn btn-outline-warning mx-1">
+                <i class="bi bi-star">4</i>
+              </button>
+
+              <button type="submit" name="rating" value="5" class="btn btn-outline-warning mx-1">
+                <i class="bi bi-star">5</i>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <hr />
+    <section style="background-color:#0551609c;">
+      {{#each ../comment}}
+      <div class="card mb-3">
+        <div class="card-body">
+          <div class="d-flex flex-start">
+            <div class="w-100">
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                <h6 class="text-primary fw-bold mb-0">
+                  {{name}} {{lastname}}
+                  <span class="text-dark ms-2">{{description}}</span>
+                </h6>
+                <p class="mb-0">{{moment comment_date format="DD/MM/YYYY"}}</p>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+      {{/each}}
+  </div>
+
+  <form action="/agregarComentario/{{img_id}}" method="post">
+    <div class="card-footer py-3 border-0" style="background-color: #f8f9fa;">
+      <div class="d-flex flex-start w-100">
+        <div class="form-outline w-100">
+          <textarea class="form-control" name="description" rows="4" placeholder="Comentar"
+            style="background: #fff;"></textarea>
+        </div>
+      </div>
+      <div class="float-end mt-2 pt-1">
+        <button type="submit" class="btn btn-primary btn-sm">Comentar</button>
+
+      </div>
+    </div>
+  </form>
+
+</section>
+  {{/each}}
+ 
+</section>
+
+
+
+{{else}}
+{{#each image}}
+<div class="row">
+
+      <div class="col-md-6 mb-4">
+        <img src="/uploads/{{watermark_type}}" class="d-block w-100 redimension" alt="" />
+        Fecha de Publicacion: {{moment creation_date format="DD/MM/YYYY"}}
+      </div>
+
+      <div class="col-md-6 mb-4">
+        <!--Content-->
+        <div class="p-4">
+          <div class="mb-3">
+            <a href="/{{category}}">
+              <span class="badge bg-dark me-1">{{category}}</span>
+            </a>
+            <a href="/{{label1}}">
+              <span class="badge bg-info me-1">{{label1}}</span>
+            </a>
+            <a href="/{{label2}}">
+              <span class="badge bg-danger me-1">{{label2}}</span>
+            </a>
+            <a href="/{{label3}}">
+              <span class="badge bg-success me-1">{{label3}}</span>
+            </a>
+          </div>
+          <div class="small mb-1"><strong>Titulo</strong></div>
+
+          <strong>
+            <p style="font-size: 20px;">{{title}}</p>
+          </strong>
+          <div class="small mb-1"><strong>Autor: {{user_name}} {{user_lastname}}</strong></div>
+
+          <p>Si te gusta mi contenido puedes comunicarte conmigo desde mi <a href="mailto:{{user_email}}">Correo!</a>
+          </p>
+
+          {{#with ../averageRating}}
+          <div class="rating">
+            <p>Valoración de la imagen: {{this}} <i class="bi bi-star-fill"></i></p>
+          </div>
+          {{/with}}
+          <form action="/agregarValoracion/{{img_id}}" method="post" class="d-flex justify-content-left">
+            <div class="text-center mb-3">
+              <p>Valorar:</p>
+              <button type="submit" name="rating" value="1" class="btn btn-outline-warning mx-1">
+                <i class="bi bi-star">1</i>
+              </button>
+
+              <button type="submit" name="rating" value="2" class="btn btn-outline-warning mx-1">
+                <i class="bi bi-star">2</i>
+              </button>
+
+              <button type="submit" name="rating" value="3" class="btn btn-outline-warning mx-1">
+                <i class="bi bi-star">3</i>
+              </button>
+
+              <button type="submit" name="rating" value="4" class="btn btn-outline-warning mx-1">
+                <i class="bi bi-star">4</i>
+              </button>
+
+              <button type="submit" name="rating" value="5" class="btn btn-outline-warning mx-1">
+                <i class="bi bi-star">5</i>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <hr />
+      <section style="background-color: #eee;">
+      {{#each ../comment}}
+      <div class="card mb-3">
+        <div class="card-body">
+          <div class="d-flex flex-start">
+
+            <div class="w-100">
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                <h6 class="text-primary fw-bold mb-0">
+                  {{name}} {{lastname}}
+                  <span class="text-dark ms-2">{{description}}</span>
+                </h6>
+                <p class="mb-0">{{moment comment_date format="DD/MM/YYYY"}}</p>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+      {{/each}}
+  </div>
+    <form action="/agregarComentario/{{img_id}}" method="post">
+    <div class="card-footer py-3 border-0" style="background-color: #f8f9fa;">
+      <div class="d-flex flex-start w-100">
+        <div class="form-outline w-100">
+          <textarea class="form-control" name="description" rows="4" placeholder="Comentar"
+            style="background: #fff;"></textarea>
+        </div>
+      </div>
+      <div class="float-end mt-2 pt-1">
+        <button type="submit" class="btn btn-primary btn-sm">Comentar</button>
+
+      </div>
+    </div>
+  </form>
+
+</section>
+  {{/each}}
+{{/if}}
+</div>
+</div>
+</section>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.has('alert')) {
+        alert('Ya has valorado esta imagen!');
+      }
+    });
+  </script>
